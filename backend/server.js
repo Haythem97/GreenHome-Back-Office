@@ -1,20 +1,15 @@
 const path = require('path');
 const express = require('express');
-const colors = require('colors');
-const dotenv = require('dotenv').config();
 const { errorHandler } = require('./middleware/errorMiddleware');
 const connectDB = require('./config/db');
 const fs = require("fs");
 const https = require("https");
-const cors = require('cors'); // Import the cors package
 const port = process.env.PORT || 5000;
 
 connectDB();
 
 const app = express();
-app.use(cors({
-  origin: 'http://localhost:3000' // Remplacez par l'origine de votre frontend
-}));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
