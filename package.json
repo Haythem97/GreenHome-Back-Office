@@ -14,12 +14,19 @@
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "certbot": "^5.0.3",
     "colors": "^1.4.0",
+    "cors": "^2.8.5",
     "dotenv": "^15.0.0",
     "express": "^4.17.2",
     "express-async-handler": "^1.2.0",
+    "git": "^0.1.5",
+    "greenlock": "^4.0.4",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.1.9"
+    "letsencrypt": "^2.1.10",
+    "mongoose": "^6.1.9",
+    "openssl": "^2.0.0",
+    "reactjs-popup": "^2.0.5"
   },
   "devDependencies": {
     "concurrently": "^7.0.0",

@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-const API_URL = '/api/goals/'
 
 
 // Create new Object
@@ -10,7 +9,7 @@ const createObject = async (goalId, objectData, token) => {
             Authorization: `Bearer ${token}`,
           },
         };
-        const response = await axios.post(`/api/goals/${goalId}/objects/`, objectData, config);
+        const response = await axios.post(`https://greenhomeapi.onrender.com/api/goals/${goalId}/objects/`, objectData, config);
         return response.data;
     };
 
@@ -24,7 +23,7 @@ export const getObjects = async (goalId, token) => {
             },
         };
 
-        const response = await axios.get(`/api/goals/${goalId}/objects/`, config)
+        const response = await axios.get(`https://greenhomeapi.onrender.com/api/goals/${goalId}/objects/`, config)
         return response.data
     } catch (error) {
         console.error("Error fetching objects:", error);
@@ -40,7 +39,7 @@ export const deleteObject = async (goalId , token) => {
           },
         };
 
-        const response = await axios.delete(`/api/goals/${goalId}/objects/}`, config);
+        const response = await axios.delete(`https://greenhomeapi.onrender.com/api/goals/${goalId}/objects/}`, config);
 
         return response.data;
 };

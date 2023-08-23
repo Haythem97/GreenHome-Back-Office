@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import Spinner from '../components/Spinner'
 import { getObjects, reset } from '../features/objects/objectSlice'
 import { useParams } from 'react-router-dom';
-import ObjectForm from "../components/ObjectForm";
+import ObjectForm from "../components/Object/ObjectForm";
 
 function Dashboard() {
     const navigate = useNavigate()
@@ -14,7 +14,8 @@ function Dashboard() {
         (state) => state.objects
     )
     const { goalId } = useParams(); // Obtenez l'ID depuis les paramètres d'URL
-
+    const numberOfLampes = (objects.filter(object => object.type === 'lampe')).length;
+    console.log(numberOfLampes)
     useEffect(() => {
         if (isError) {
             console.log(message)
@@ -37,9 +38,11 @@ function Dashboard() {
 
     return (
         <>
-            <h2>Goal Details</h2>
-            <p>Goal ID: {goalId}</p>
-            <ObjectForm/>
+            <section className='heading'>
+                <h1>Welcome {user && user.name}</h1>
+            </section>
+
+            <ObjectForm numberOfLampes={numberOfLampes} />
 
             <section className='content'>
 

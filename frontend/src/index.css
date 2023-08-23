@@ -107,7 +107,18 @@ h3 {
   border: none;
   background: none;
 }
-
+.popup{
+  position: absolute;
+  top: 36%;
+  z-index: -5;
+}
+.popup-content{
+ width: 50%;
+  height: 50%;
+  background: #fff;
+  padding: 5px;
+  border: 1px solid #d7d7d7;
+}
 .form {
   width: 70%;
   margin: 0 auto;
@@ -120,6 +131,13 @@ h3 {
 
 .form-group {
   margin-bottom: 10px;
+}
+
+.form-group-btn {
+  margin-bottom: 10px;
+  display: inline-flex;
+  margin: 10px;
+  width: 50%;
 }
 
 .form-group input,
@@ -141,7 +159,7 @@ h3 {
 
 .btn {
   padding: 10px 20px;
-  border: 1px solid #000;
+  border: 1px solid rgba(0, 0, 0, 0);
   border-radius: 5px;
   background: #000;
   color: #fff;
@@ -167,6 +185,18 @@ h3 {
 .btn-block {
   width: 100%;
   margin-bottom: 20px;
+}
+
+.btn-popup-ajouter {
+  width: 75%;
+  margin: 10px;
+  background: green;
+}
+
+.btn-popup-annuler {
+  width: 75%;
+  margin: 10px;
+  background: red;
 }
 
 .btn:hover {

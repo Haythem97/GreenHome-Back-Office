@@ -15,6 +15,7 @@ export const createObject = createAsyncThunk(
     'objects/create',
     async ({ goalId, objectData }, thunkAPI) => {
         try {
+            console.log(objectData)
             const token = thunkAPI.getState().auth.user.token
             return await objectService.createObject(goalId,objectData,token)
         } catch (error) {

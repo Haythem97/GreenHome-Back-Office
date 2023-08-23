@@ -49,9 +49,9 @@ const setObject = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error('Please add a text field');
   }
-
   const object = await Object.create({
     text: req.body.text,
+    type: req.body.type,
     goal: req.body._id,
   });
 

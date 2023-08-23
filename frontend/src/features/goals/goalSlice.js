@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import goalService from './goalService'
+import authService from "../auth/authService";
 
 const initialState = {
   goals: [],
@@ -12,9 +13,10 @@ const initialState = {
 // Create new goal
 export const createGoal = createAsyncThunk(
   'goals/create',
-  async (goalData, thunkAPI) => {
+  async ({goalData}, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token
+      console.log(goalData)
       return await goalService.createGoal(goalData, token)
     } catch (error) {
       const message =
@@ -34,7 +36,12 @@ export const getGoals = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token
+      if (token){
+      console.log(token)
       return await goalService.getGoals(token)
+      } else {
+        await authService.logout()
+      }
     } catch (error) {
       const message =
         (error.response &&

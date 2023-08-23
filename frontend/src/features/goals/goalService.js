@@ -1,9 +1,9 @@
 import axios from 'axios'
 
-const API_URL = '/api/goals/'
+const API_URL = 'https://greenhomeapi.onrender.com/api/goals/'
 
 // Create new goal
-const createGoal = async (goalData, token) => {
+const createGoal = async ({goalData}, token) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
