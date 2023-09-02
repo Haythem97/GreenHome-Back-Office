@@ -15,7 +15,7 @@ var awsIot = require('aws-iot-device-sdk');
 // connection will be terminated.
 //
 var device = awsIot.device({
-  keyPath: 'private.pem.key',
+    keyPath: 'private.pem.key',
   certPath: 'certificate.pem.crt',
   caPath: 'root-CA.pem',
   clientId: 'testconnection',

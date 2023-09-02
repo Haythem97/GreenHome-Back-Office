@@ -5,6 +5,9 @@ import Spinner from '../components/Spinner'
 import { getObjects, reset } from '../features/objects/objectSlice'
 import { useParams } from 'react-router-dom';
 import ObjectForm from "../components/Object/ObjectForm";
+import ObjectItem from "../components/Object/ObjectItem";
+import {Box} from "@mui/material";
+import GoalItem from "../components/Goal/GoalItem";
 
 function Dashboard() {
     const navigate = useNavigate()
@@ -15,7 +18,6 @@ function Dashboard() {
     )
     const { goalId } = useParams(); // Obtenez l'ID depuis les paramètres d'URL
     const numberOfLampes = (objects.filter(object => object.type === 'lampe')).length;
-    console.log(numberOfLampes)
     useEffect(() => {
         if (isError) {
             console.log(message)
@@ -39,22 +41,31 @@ function Dashboard() {
     return (
         <>
             <section className='heading'>
-                <h1>Welcome {user && user.name}</h1>
+                <h1>SALON</h1>
             </section>
 
             <ObjectForm numberOfLampes={numberOfLampes} />
 
             <section className='content'>
 
-                    <div className='goals'>
-                        <ul>
+                <Box
+                    display="grid"
+                    gridTemplateColumns="repeat(12, 1fr)"
+                    gridAutoRows="140px"
+                    gap="20px"
+                >
+
+                    {/* ROW 3 */}
+                    {objects.length > 0 ? (
+                        <div className='objects'>
                             {objects.map((object) => (
-                                <li key={object._id}>
-                                    <h1>{object.text}</h1>
-                                </li>
+                                    <ObjectItem object={object}/>
                             ))}
-                        </ul>
-                    </div>
+                        </div>
+                    ) : (
+                        <> </>
+                    )}
+                </Box>
 
             </section>
         </>

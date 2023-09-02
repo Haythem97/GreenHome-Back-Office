@@ -15,7 +15,6 @@ export const createObject = createAsyncThunk(
     'objects/create',
     async ({ goalId, objectData }, thunkAPI) => {
         try {
-            console.log(objectData)
             const token = thunkAPI.getState().auth.user.token
             return await objectService.createObject(goalId,objectData,token)
         } catch (error) {
@@ -52,10 +51,10 @@ export const getObjects = createAsyncThunk(
 // Delete user object
 export const deleteObject = createAsyncThunk(
     'objects/delete',
-    async (goalId, thunkAPI) => {
+    async (object, thunkAPI) => {
         try {
             const token = thunkAPI.getState().auth.user.token
-            return await objectService.deleteObject(goalId, token)
+            return await objectService.deleteObject(object, token)
         } catch (error) {
             const message =
                 (error.response &&

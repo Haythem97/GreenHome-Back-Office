@@ -52,14 +52,13 @@ function GoalForm() {
                     id='type'
                     value={type}
                     onChange={(e) => {
-                      console.log(e.target.value); // Debugging line
                       setType(e.target.value);
                     }}
                 >
                   <option value=''></option>
                   <option value='chambre'>Chambre</option>
                   <option value='cuisine'>Cuisine</option>
-                  <option value='sdb'>Salle de bain</option>
+                  <option value='WC'>Salle de bain</option>
                   <option value='salon'>Salon</option>
                 </select>
               </div>

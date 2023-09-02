@@ -7,13 +7,17 @@ const objectSchema = mongoose.Schema(
             required: true,
             ref: 'Goal',
         },
-        text: {
+        name: {
             type: String,
-            required: [true, 'Please add a text value'],
+            required: [true, 'Please add a name value'],
         },
         type: {
             type: String,
-            required: [true, 'Please add a text value'],
+            required: [true, 'Please add a type value'],
+        },
+        port: {
+            type: String,
+            required: [true, 'Please add a type value'],
         },
     },
   {

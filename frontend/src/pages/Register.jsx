@@ -10,12 +10,12 @@ function Register() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    primary_email: '',
     password: '',
     password2: '',
   })
 
-  const { name, email, password, password2 } = formData
-
+  const { name, email, primary_email, password, password2 } = formData
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
@@ -36,6 +36,12 @@ function Register() {
   }, [user, isError, isSuccess, message, navigate, dispatch])
 
   const onChange = (e) => {
+    if ((e.target.name) == "email"){
+      setFormData((prevState) => ({
+        ...prevState,
+        primary_email: e.target.value,
+      }))
+    }
     setFormData((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
@@ -51,6 +57,7 @@ function Register() {
       const userData = {
         name,
         email,
+        primary_email,
         password,
       }
 

@@ -37,13 +37,11 @@ function Dashboard() {
 
   return (
     <>
+      <div class="container">
       <section className='heading'>
         <h1>Welcome {user && user.name}</h1>
-        <p>Chambres</p>
       </section>
-
       <GoalForm />
-
       <section className='content'>
         {goals.length > 0 ? (
           <div className='goals'>
@@ -52,9 +50,10 @@ function Dashboard() {
             ))}
           </div>
         ) : (
-          <h3>You have not set any goals</h3>
+            <> </>
         )}
       </section>
+      </div>
     </>
   )
 }

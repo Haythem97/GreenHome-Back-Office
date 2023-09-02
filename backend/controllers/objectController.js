@@ -45,16 +45,16 @@ const getObjects = asyncHandler(async (req, res) => {
 // @route   POST /api/objects
 // @access  Private
 const setObject = asyncHandler(async (req, res) => {
-  if (!req.body.text) {
+  if (!req.body.name) {
     res.status(400);
     throw new Error('Please add a text field');
   }
   const object = await Object.create({
-    text: req.body.text,
+    name: req.body.name,
     type: req.body.type,
-    goal: req.body._id,
+    goal: req.body.goalId,
+    port: req.body.port
   });
-
   res.status(200).json(object);
 
 
@@ -100,6 +100,7 @@ const updateObject = asyncHandler(async (req, res) => {
 // @access  Private
 const deleteObject = asyncHandler(async (req, res) => {
   const object = await Object.findById(req.params.id)
+  const goal = await Goal.findById(req.params.goalId)
 
   if (!object) {
     res.status(400)
@@ -107,15 +108,15 @@ const deleteObject = asyncHandler(async (req, res) => {
   }
 
   // Check for goal
-  if (!req.goal) {
+  if (!goal) {
     res.status(401)
     throw new Error('goal not found')
   }
 
-  // Make sure the logged in goal matches the object goal
-  if (object.goal.toString() !== req.goal.id) {
+  // Make sure the logged in user matches the goal user
+  if (object.goal.toString() !== req.params.goalId) {
     res.status(401)
-    throw new Error('goal not authorized')
+    throw new Error('User not authorized')
   }
 
   await object.remove()

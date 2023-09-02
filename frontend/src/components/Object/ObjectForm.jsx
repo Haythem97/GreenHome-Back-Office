@@ -10,6 +10,7 @@ import 'reactjs-popup/dist/index.css';
 function ObjectForm({numberOfLampes}) {
     const [text, setText] = useState('');
     const [type, setType] = useState('');
+    const [port, setPort] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
     const { goalId } = useParams(); // Obtenez l'ID depuis les paramètres d'URL
 
@@ -17,8 +18,7 @@ function ObjectForm({numberOfLampes}) {
 
     const onSubmit = (e) => {
         e.preventDefault()
-        console.log(type);
-        dispatch(createObject({ goalId: goalId, objectData: { _id: goalId, text: text, type: type } }));
+        dispatch(createObject({ goalId: goalId, objectData: { goalId: goalId, name: text, port: port, type: type } }));
         setText('');
     }
 
@@ -60,7 +60,6 @@ function ObjectForm({numberOfLampes}) {
                                 id='type'
                                 value={type}
                                 onChange={(e) => {
-                                    console.log(e.target.value); // Debugging line
                                     setType(e.target.value);
                                 }}
                             >
@@ -69,6 +68,15 @@ function ObjectForm({numberOfLampes}) {
                                 <option value='capteur'>Capteur</option>
                                 <option value='sensor'>Sensor</option>
                             </select>
+                        </div>
+                        <div className='form-group'>
+                            <label htmlFor='type'>Port</label>
+                            <input
+                                name='port'
+                                id='port'
+                                value={port}
+                                onChange={(e) => setPort(e.target.value)}
+                            />
                         </div>
                         <div className='form-group-btn'>
                             <button className='btn btn-popup-ajouter' type='submit'>
