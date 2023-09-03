@@ -41,6 +41,21 @@ const getObjects = asyncHandler(async (req, res) => {
   res.status(200).json(objects);
 });
 
+// @desc    Get objects
+// @route   GET /api/objects
+// @access  Private
+const getObjectsByUser = asyncHandler(async (req, res) => {
+  const userId = req.user._id; // Obtenez l'ID de l'utilisateur depuis les paramètres d'URL
+
+  // 1. Obtenez tous les chambres de cet utilisateur
+  const userGoals = await Goal.find({ user: userId });
+
+  // 2. Obtenez tous les objets associés aux chambres de cet utilisateur
+  const objectIds = userGoals.map((goal) => goal._id);
+  const userObjects = await Object.find({ goal: { $in: objectIds } });
+  res.status(200).json(userObjects);
+});
+
 // @desc    Set object
 // @route   POST /api/objects
 // @access  Private
@@ -126,6 +141,7 @@ const deleteObject = asyncHandler(async (req, res) => {
 
 module.exports = {
   getObjects,
+  getObjectsByUser,
   setObject,
   updateObject,
   deleteObject,

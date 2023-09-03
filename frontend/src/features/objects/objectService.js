@@ -21,8 +21,22 @@ export const getObjects = async (goalId, token) => {
                 Authorization: `Bearer ${token}`,
             },
         };
-
         const response = await axios.get(`http://localhost:5000/api/goals/${goalId}/objects/`, config)
+        return response.data
+    } catch (error) {
+        console.error("Error fetching objects:", error);
+        throw error; // Rethrow the error to be caught in the calling code
+    }
+};
+
+export const getObjectsByUser = async (userId, token) => {
+    try {
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        };
+        const response = await axios.get(`http://localhost:5000/api/goals/${userId}/objects/`, config)
         return response.data
     } catch (error) {
         console.error("Error fetching objects:", error);
@@ -47,6 +61,7 @@ export const deleteObject = async (object , token) => {
 const objectService = {
   createObject,
   getObjects,
+  getObjectsByUser,
   deleteObject,
 }
 

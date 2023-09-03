@@ -36,7 +36,7 @@ function Register() {
   }, [user, isError, isSuccess, message, navigate, dispatch])
 
   const onChange = (e) => {
-    if ((e.target.name) == "email"){
+    if ((e.target.name) === "email"){
       setFormData((prevState) => ({
         ...prevState,
         primary_email: e.target.value,
