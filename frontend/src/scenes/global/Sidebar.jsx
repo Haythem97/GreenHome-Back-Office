@@ -13,6 +13,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {getGoals, reset} from "../../features/goals/goalSlice";
 import Spinner from "../../components/Spinner";
 import Logout from "../../components/Logout";
+import GreenHomeLogoDark from "../../public/GreenHomeLogoDark.png"
+
 
 function getGoalIcon(type) {
     switch (type) {
@@ -92,10 +94,10 @@ const Sidebar = () => {
                             padding: "5px 35px 5px 20px !important",
                         },
                         "& .pro-inner-item:hover": {
-                            color: "#868dfb !important",
+                            color: "#6AFC1A !important",
                         },
                         "& .pro-menu-item.active": {
-                            color: "#6870fa !important",
+                            color: "#6AFC1A !important",
                         },
                     }}
                 >
@@ -160,16 +162,24 @@ const Sidebar = () => {
                                 ) : (
                                     <></>
                                 )}
+                                
                             </Box>
                             {!isCollapsed && (
+                    
+
+                       
                                 <Box
                                     display="flex"
                                     justifyContent="space-between"
                                     alignItems="center"
                                     ml="15px"
-                                ><Logout isCollapsed={isCollapsed}/>
+                                >
+                                    
+                                    <Logout isCollapsed={isCollapsed}/>
 
                                 </Box>
+                               
+                
                             )}
                         </Menu>
                     </ProSidebar>

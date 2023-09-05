@@ -134,7 +134,20 @@ h3 {
   font-weight: 700;
   margin-bottom: 20px;
   padding: 0 20px;
+  display: inline-flex;
 }
+
+.heading h1 {
+  font-weight: 100;
+  font-size: 3rem;
+
+  
+}
+.heading h2 {
+  font-weight: 800;
+  margin-left: 10px;
+}
+
 
 .heading p {
   color: #828282;
@@ -227,8 +240,9 @@ h3 {
   border: 1px solid #d7d7d7;
 }
 .form {
-  width: 70%;
+  width: 84%;
   margin: 0 auto;
+  margin-left: 99px;
 }
 .content {
   width: 85%;
@@ -243,6 +257,7 @@ h3 {
 .form-group-btn {
   display: inline-flex;
   width: 100%;
+  
 }
 
 .form-group input,
@@ -265,25 +280,35 @@ h3 {
   margin-top: 40px;
 }
 .btn {
-  padding: 10px 20px;
-  border: 1px solid rgba(0, 0, 0, 0);
-  border-radius: 5px;
-  background: #000;
-  color: #fff;
+  width: 84%;
+  margin: 0 auto;
+  height: 60px; /* Ajustez la hauteur selon vos préférences */
+  background-color: #0c0c0c!important; /* Couleur de fond du bouton */
+  color: #fff; /* Couleur du texte du bouton */
+  font-weight: 200;
   font-size: 16px;
-  font-weight: 700;
+  border: none;
   cursor: pointer;
-  text-align: center;
-  appearance: button;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  border-radius: 8px;
+}
+
+/* Style au survol du bouton */
+.btn:hover {
+  background-color: #0056b3; /* Couleur de fond au survol */
+  transform: scale(1.05); /* Effet d'agrandissement au survol */
+}
+
+/* Style lorsqu'on clique sur le bouton */
+.btn:active {
+  background-color: #003b80; /* Couleur de fond au clic */
+  transform: scale(0.95); /* Effet de réduction au clic */
 }
 .btn-sidebar {
   padding: 10px 20px;
   border: 1px solid rgba(0, 0, 0, 0);
   border-radius: 5px;
-  background: #000;
+  background: #8d9787;
   color: #fff;
   font-size: 16px;
   font-weight: 700;
@@ -389,7 +414,7 @@ h3 {
   z-index: 1009;
 }
 .pro-sidebar > .pro-sidebar-inner {
-  background: #1d1d1d;
+  background: #930f0f;
   height: 100%;
   position: relative;
   z-index: 101; }

@@ -39,7 +39,7 @@ function Dashboard() {
     <>
       <div class="container">
       <section className='heading'>
-        <h1>Welcome {user && user.name}</h1>
+        <h1>Hi, Welcome </h1><h2>{user && user.name}</h2>
       </section>
       <GoalForm />
       <section className='content'>

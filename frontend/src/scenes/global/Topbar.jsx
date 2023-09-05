@@ -26,7 +26,7 @@ const Topbar = () => {
         <Box display="flex" justifyContent="space-between" p={2}>
             {/* SEARCH BAR */}
             <Box display="flex" borderRadius="3px">
-                <img src={logo} width={'400px'} />
+                
             </Box>
 
             {/* ICONS */}

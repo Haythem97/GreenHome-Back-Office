@@ -26,6 +26,7 @@
     "letsencrypt": "^2.1.10",
     "mongoose": "^6.1.9",
     "openssl": "^2.0.0",
+    "react": "^18.2.0",
     "reactjs-popup": "^2.0.5"
   },
   "devDependencies": {
