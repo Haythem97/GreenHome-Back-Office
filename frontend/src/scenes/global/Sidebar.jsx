@@ -162,14 +162,24 @@ const Sidebar = () => {
                                 )}
                             </Box>
                             {!isCollapsed && (
+                                <>
+                                    <Box
+                                        display="flex"
+                                        justifyContent="space-between"
+                                        alignItems="center"
+                                        ml="15px"
+                                    >
+                                    <Logout isCollapsed={isCollapsed}/>
+                                    </Box>
                                 <Box
-                                    display="flex"
-                                    justifyContent="space-between"
-                                    alignItems="center"
-                                    ml="15px"
+                                display="flex"
+                                justifyContent="space-between"
+                                alignItems="center"
+                                ml="15px"
                                 ><Logout isCollapsed={isCollapsed}/>
 
                                 </Box>
+                                </>
                             )}
                         </Menu>
                     </ProSidebar>

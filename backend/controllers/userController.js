@@ -62,13 +62,41 @@ const loginUser = asyncHandler(async (req, res) => {
       _id: user.id,
       name: user.name,
       email: user.email,
-      token: generateToken(user._id),
+      token: generateToken(user.id),
     })
   } else {
     res.status(400)
     throw new Error('Invalid credentials')
   }
 })
+
+// @desc    Update user profile
+// @route   PUT /api/users/update
+// @access  Private
+const updateUserProfile = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id);
+
+  if (user) {
+    user.name = req.body.name || user.name;
+
+    if (req.body.password) {
+      user.password = bcrypt.hashSync(req.body.password, 10);
+    }
+
+    const updatedUser = await user.save();
+
+    res.json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      primary_email: updatedUser.primary_email,
+      token: generateToken(updatedUser._id),
+    });
+  } else {
+    res.status(404);
+    throw new Error('User not found');
+  }
+});
 
 // @desc    Get user data
 // @route   GET /api/users/me
@@ -87,5 +115,6 @@ const generateToken = (id) => {
 module.exports = {
   registerUser,
   loginUser,
+  updateUserProfile,
   getMe,
 }

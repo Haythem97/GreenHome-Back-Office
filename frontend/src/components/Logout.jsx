@@ -1,6 +1,6 @@
-import { FaSignInAlt, FaSignOutAlt, FaUser } from 'react-icons/fa'
-import { Link, useNavigate } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
+import { FaSignOutAlt } from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import { logout, reset } from '../features/auth/authSlice'
     function Logout(isCollapsed) {
   const navigate = useNavigate()
