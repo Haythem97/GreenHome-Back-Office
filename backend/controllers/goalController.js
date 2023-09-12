@@ -36,8 +36,10 @@ device.on('connect', function () {
 // @route   GET /api/goals
 // @access  Private
 const getGoals = asyncHandler(async (req, res) => {
-  const goals = await Goal.find({ user: req.user.id })
-  res.status(200).json(goals)
+  // Récupérez toutes les Goals avec le même primary_email
+  const goalsForHouse = await Goal.find({ user: req.user.primary_email });
+  console.log(goalsForHouse);
+  res.status(200).json(goalsForHouse);
 })
 
 // @desc    Get goal by id
@@ -46,7 +48,7 @@ const getGoals = asyncHandler(async (req, res) => {
 const getGoal = asyncHandler(async (req, res) => {
   const goalId = req.params.GoalId; // Obtenez le goalId depuis les paramètres d'URL
   try {
-    const goal = await Goal.findOne({ _id: goalId, user: req.user.id });
+    const goal = await Goal.findOne({ _id: goalId, user: req.user.primary_email });
     if (goal) {
       res.status(200).json(goal);
     } else {
@@ -66,14 +68,18 @@ const setGoal = asyncHandler(async (req, res) => {
     throw new Error('Please add a text field');
   }
 
+  // Assurez-vous que req.user contient le primary_email de l'utilisateur
+  const userPrimaryEmail = req.user.primary_email;
+
+  // Créez l'objectif en utilisant le primary_email de l'utilisateur
   const goal = await Goal.create({
     name: req.body.name,
     type: req.body.type,
-    user: req.user.id,
+    user: userPrimaryEmail, // Utilisez le primary_email de l'utilisateur ici
   });
 
+  console.log(goal);
   res.status(200).json(goal);
-
 
   device.publish('aws/kk', JSON.stringify({ test_data: goal }));
 
@@ -81,6 +87,7 @@ const setGoal = asyncHandler(async (req, res) => {
     console.log('message', topic, payload.toString());
   });
 });
+
 
 // @desc    Update goal
 // @route   PUT /api/goals/:id
@@ -100,7 +107,7 @@ const updateGoal = asyncHandler(async (req, res) => {
   }
 
   // Make sure the logged in user matches the goal user
-  if (goal.user.toString() !== req.user.id) {
+  if (goal.user.toString() !== req.user.primary_email) {
     res.status(401)
     throw new Error('User not authorized')
   }

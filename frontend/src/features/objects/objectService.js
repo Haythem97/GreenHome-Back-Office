@@ -21,7 +21,7 @@ export const getObjects = async (goalId, token) => {
                 Authorization: `Bearer ${token}`,
             },
         };
-        const response = await axios.get(`https://greenhomeapi.onrender.com/api/goals/${goalId}/objects/`, config)
+        const response = await axios.get(`http://localhost:5000/api/goals/${goalId}/objects/`, config)
         return response.data
     } catch (error) {
         console.error("Error fetching objects:", error);

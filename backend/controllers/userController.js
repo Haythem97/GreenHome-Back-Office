@@ -2,29 +2,30 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const asyncHandler = require('express-async-handler')
 const User = require('../models/userModel')
+const Goal = require("../models/goalModel");
 
 // @desc    Register new user
 // @route   POST /api/users
 // @access  Public
 const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, primary_email, password } = req.body
+  const { name, email, primary_email, password } = req.body;
 
   if (!name || !email || !password) {
-    res.status(400)
-    throw new Error('Please add all fields')
+    res.status(400);
+    throw new Error('Please add all fields');
   }
 
   // Check if user exists
-  const userExists = await User.findOne({ email })
+  const userExists = await User.findOne({ email });
 
   if (userExists) {
-    res.status(400)
-    throw new Error('User already exists')
+    res.status(400);
+    throw new Error('User already exists');
   }
 
   // Hash password
-  const salt = await bcrypt.genSalt(10)
-  const hashedPassword = await bcrypt.hash(password, salt)
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(password, salt);
 
   // Create user
   const user = await User.create({
@@ -32,21 +33,38 @@ const registerUser = asyncHandler(async (req, res) => {
     email,
     primary_email,
     password: hashedPassword,
-  })
+  });
 
   if (user) {
+    // Generate token for authentication
+    const token = generateToken(user._id);
+    const userRooms = await Goal.find({ user: req.user.primary_email })
+
+    // Créez un tableau d'autorisations par défaut avec valeur false pour chaque chambre
+    const defaultPermissions = userRooms.map((room) => ({
+      roomId: room._id,
+      permission: false,
+    }));
+
+    // Mettez à jour les autorisations de l'utilisateur
+    user.permissions = defaultPermissions;
+
+    // Enregistrez les modifications dans la base de données
+    await user.save();
+
     res.status(201).json({
       _id: user.id,
       name: user.name,
       email: user.email,
       primary_email: user.primary_email,
-      token: generateToken(user._id),
-    })
+      token,
+    });
   } else {
-    res.status(400)
-    throw new Error('Invalid user data')
+    res.status(400);
+    throw new Error('Invalid user data');
   }
-})
+});
+
 
 // @desc    Authenticate a user
 // @route   POST /api/users/login

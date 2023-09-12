@@ -38,7 +38,7 @@ function GoalItem({ goal }) {
             <Link to={`/goals/${goal._id}`}>
                 <div className="name">
                 <h2>
-                    {goal.name.toUpperCase()}
+                    {goal.name}
                 </h2>
             </div>
             </Link>
