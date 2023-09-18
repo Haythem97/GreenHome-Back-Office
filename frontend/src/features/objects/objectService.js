@@ -8,7 +8,7 @@ const createObject = async (goalId, objectData, token) => {
             Authorization: `Bearer ${token}`,
           },
         };
-        const response = await axios.post(`http://localhost:5000/api/goals/${goalId}/objects/`, objectData, config);
+        const response = await axios.post(`http://greenhomeapi.onrender.com/api/goals/${goalId}/objects/`, objectData, config);
         return response.data;
     };
 
@@ -21,7 +21,7 @@ export const getObjects = async (goalId, token) => {
                 Authorization: `Bearer ${token}`,
             },
         };
-        const response = await axios.get(`http://localhost:5000/api/goals/${goalId}/objects/`, config)
+        const response = await axios.get(`https://greenhomeapi.onrender.com/api/goals/${goalId}/objects/`, config)
         return response.data
     } catch (error) {
         console.error("Error fetching objects:", error);

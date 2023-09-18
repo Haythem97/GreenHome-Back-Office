@@ -16,10 +16,10 @@ var awsIot = require('aws-iot-device-sdk');
 //
 var device = awsIot.device({
     keyPath: 'private.pem.key',
-  certPath: 'certificate.pem.crt',
-  caPath: 'root-CA.pem',
-  clientId: 'testconnection',
-  host: 'agkj70tot2l60-ats.iot.eu-north-1.amazonaws.com'
+    certPath: 'certificate.pem.crt',
+    caPath: 'root-CA.pem',
+    clientId: 'testconnection',
+    host: 'agkj70tot2l60-ats.iot.eu-north-1.amazonaws.com'
 });
 
 //
@@ -137,7 +137,7 @@ const deleteGoal = asyncHandler(async (req, res) => {
   }
 
   // Make sure the logged in user matches the goal user
-  if (goal.user.toString() !== req.user.id) {
+  if (goal.user.toString() !== req.user.primary_email) {
     res.status(401)
     throw new Error('User not authorized')
   }
