@@ -6,6 +6,9 @@ const roomPermissionSchema = new mongoose.Schema({
         ref: 'Room',
         required: true,
     },
+    roomName:{
+        type: String,
+    },
     permission: {
         type: String, // Vous pouvez définir ici le type qui représente les autorisations (lecture, écriture, etc.)
         required: true,

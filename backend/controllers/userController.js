@@ -44,7 +44,7 @@ const registerUser = asyncHandler(async (req, res) => {
     const defaultPermissions = userRooms.map((room) => ({
       roomId: room._id,
       roomName: room.name,
-      permission: false,
+      autorisation: false,
     }));
 
     // Mettez à jour les autorisations de l'utilisateur
