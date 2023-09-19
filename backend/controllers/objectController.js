@@ -92,14 +92,6 @@ const updateObject = asyncHandler(async (req, res) => {
     throw new Error('Object not found');
   }
 
-  // Vous pouvez vérifier d'autres autorisations ou conditions ici si nécessaire.
-
-  // Assurez-vous que la clé que vous voulez mettre à jour existe dans la requête.
-  if (!req.body.value) {
-    res.status(400);
-    throw new Error('Field to update not provided');
-  }
-
   // Mettez à jour uniquement le champ spécifique avec la nouvelle valeur
   object.value = req.body.value;
 
