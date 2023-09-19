@@ -117,6 +117,48 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   }
 });
 
+const updatePermission = asyncHandler(async (req, res) => {
+  const userId = req.body.userId; // ID de l'utilisateur
+  const permissionId = req.body._id; // ID de la permission à mettre à jour
+  const autorisation = req.body.autorisation; // Nouvelle valeur d'autorisation
+
+  try {
+    // Recherchez l'utilisateur par son ID
+    const user = await User.findById(userId);
+
+    if (!user) {
+      res.status(404);
+      throw new Error('Utilisateur non trouvé');
+    }
+
+    // Recherchez la permission par son ID dans le tableau de permissions de l'utilisateur
+    const permissionToUpdate = user.permissions.find(permission => permission._id.toString() === permissionId);
+
+    if (!permissionToUpdate) {
+      res.status(404);
+      throw new Error('Permission non trouvée');
+    }
+
+    // Mettez à jour la valeur d'autorisation de la permission
+    permissionToUpdate.autorisation = autorisation;
+
+    // Enregistrez les modifications de l'utilisateur
+    await user.save();
+
+    res.json({
+      message: 'Autorisation mise à jour avec succès',
+      updatedPermission: permissionToUpdate,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: 'Erreur lors de la mise à jour de l\'autorisation',
+      error: error.message,
+    });
+  }
+});
+
+
+
 // @desc    Get user data
 // @route   GET /api/users/me
 // @access  Private
@@ -157,4 +199,5 @@ module.exports = {
   updateUserProfile,
   getMe,
   getOtherUsersPermissions,
+  updatePermission,
 }

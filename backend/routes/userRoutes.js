@@ -6,6 +6,7 @@ const {
   updateUserProfile,
   getMe,
   getOtherUsersPermissions,
+  updatePermission
 } = require('../controllers/userController')
 const { protect } = require('../middleware/authMiddleware')
 
@@ -14,5 +15,6 @@ router.post('/login', loginUser)
 router.put('/update', protect, updateUserProfile);
 router.get('/me', protect, getMe)
 router.get('/userspermissions', protect, getOtherUsersPermissions)
+router.put('/updatePermission', protect, updatePermission);
 
 module.exports = router
