@@ -7,7 +7,6 @@ import { useParams } from 'react-router-dom';
 import ObjectForm from "../components/Object/ObjectForm";
 import ObjectItem from "../components/Object/ObjectItem";
 import {Box} from "@mui/material";
-import GoalItem from "../components/Goal/GoalItem";
 
 function Dashboard() {
     const navigate = useNavigate()

@@ -36,7 +36,7 @@ device.on('connect', function () {
 // @route   GET /api/objects
 // @access  Private
 const getObjects = asyncHandler(async (req, res) => {
-  const goalId = req.params.goalId; // Obtenez le goalId depuis les paramètres d'URL
+  const goalId = req.body.goalId; // Obtenez le goalId depuis les paramètres d'URL
   const objects = await Object.find({ goal: goalId }); // Utilisez goalId pour rechercher les objets associés au but
   res.status(200).json(objects);
 });
@@ -85,7 +85,7 @@ const setObject = asyncHandler(async (req, res) => {
 // @route   PUT /api/objects/:id
 // @access  Private
 const updateObject = asyncHandler(async (req, res) => {
-  const object = await Object.findById(req.params.id);
+  const object = await Object.findById(req.body._id);
 
   if (!object) {
     res.status(404);
