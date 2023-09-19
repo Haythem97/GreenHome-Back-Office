@@ -68,7 +68,8 @@ const setObject = asyncHandler(async (req, res) => {
     name: req.body.name,
     type: req.body.type,
     goal: req.body.goalId,
-    port: req.body.port
+    port: req.body.port,
+    value: false,
   });
   res.status(200).json(object);
 
@@ -80,35 +81,34 @@ const setObject = asyncHandler(async (req, res) => {
   });
 });
 
-// @desc    Update object
+// @desc    Update value object
 // @route   PUT /api/objects/:id
 // @access  Private
 const updateObject = asyncHandler(async (req, res) => {
-  const object = await Object.findById(req.params.id)
+  const object = await Object.findById(req.params.id);
 
   if (!object) {
-    res.status(400)
-    throw new Error('object not found')
+    res.status(404);
+    throw new Error('Object not found');
   }
 
-  // Check for goal
-  if (!req.goal) {
-    res.status(401)
-    throw new Error('goal not found')
+  // Vous pouvez vérifier d'autres autorisations ou conditions ici si nécessaire.
+
+  // Assurez-vous que la clé que vous voulez mettre à jour existe dans la requête.
+  if (!req.body.value) {
+    res.status(400);
+    throw new Error('Field to update not provided');
   }
 
-  // Make sure the logged in goal matches the object goal
-  if (object.goal.toString() !== req.goal.id) {
-    res.status(401)
-    throw new Error('goal not authorized')
-  }
+  // Mettez à jour uniquement le champ spécifique avec la nouvelle valeur
+  object.value = req.body.newValue;
 
-  const updatedObject = await Object.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-  })
+  // Enregistrez les modifications de l'objet
+  await object.save();
 
-  res.status(200).json(updatedObject)
-})
+  res.status(200).json(object);
+});
+
 
 // @desc    Delete Object
 // @route   DELETE /api/objects/:id

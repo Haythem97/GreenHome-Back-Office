@@ -39,7 +39,6 @@ const registerUser = asyncHandler(async (req, res) => {
     // Generate token for authentication
     const token = generateToken(user._id);
     const userRooms = await Goal.find({ user: primary_email   })
-    console.log(userRooms);
     // Créez un tableau d'autorisations par défaut avec valeur false pour chaque chambre
     const defaultPermissions = userRooms.map((room) => ({
       roomId: room._id,

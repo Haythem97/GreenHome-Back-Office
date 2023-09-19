@@ -19,6 +19,10 @@ const objectSchema = mongoose.Schema(
             type: String,
             required: [true, 'Please add a type value'],
         },
+        value: {
+            type: Boolean, // Vous pouvez définir ici le type qui représente les autorisations (lecture, écriture, etc.)
+            required: true,
+        },
     },
   {
     timestamps: true,
