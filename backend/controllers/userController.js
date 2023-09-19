@@ -43,6 +43,7 @@ const registerUser = asyncHandler(async (req, res) => {
     // Créez un tableau d'autorisations par défaut avec valeur false pour chaque chambre
     const defaultPermissions = userRooms.map((room) => ({
       roomId: room._id,
+      roomName: room.name,
       permission: false,
     }));
 
