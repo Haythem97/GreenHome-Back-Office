@@ -15,7 +15,8 @@ function Dashboard() {
     const { objects, isLoading, isError, message } = useSelector(
         (state) => state.objects
     )
-    const { goalId } = useParams(); // Obtenez l'ID depuis les paramètres d'URL
+
+    const { chambreId } = useParams(); // Obtenez l'ID depuis les paramètres d'URL
     const numberOfLampes = (objects.filter(object => object.type === 'lampe')).length;
     useEffect(() => {
         if (isError) {
@@ -26,12 +27,12 @@ function Dashboard() {
             navigate('/login')
         }
 
-        dispatch(getObjects(goalId))
+        dispatch(getObjects(chambreId))
 
         return () => {
             dispatch(reset())
         }
-    }, [goalId, user, navigate, isError, message, dispatch])
+    }, [chambreId, user, navigate, isError, message, dispatch])
 
     if (isLoading) {
         return <Spinner />

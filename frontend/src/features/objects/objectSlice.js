@@ -35,7 +35,6 @@ export const getObjects = createAsyncThunk(
    async (goalId, thunkAPI) => {
         try {
             const token = thunkAPI.getState().auth.user.token
-            console.log(token)
             return await objectService.getObjects(goalId,token)
         } catch (error) {
             const message =

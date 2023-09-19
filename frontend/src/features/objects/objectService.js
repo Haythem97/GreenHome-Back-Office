@@ -2,26 +2,25 @@ import axios from 'axios';
 
 // Create new Object
 const createObject = async (goalId, objectData, token) => {
-
     const config = {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         };
-        const response = await axios.post(`http://greenhomeapi.onrender.com/api/goals/${goalId}/objects/`, objectData, config);
+        const response = await axios.post(`http://greenhomeapi.onrender.com/api/objects/`, objectData, config);
         return response.data;
     };
 
 
 // Get user objects
-export const getObjects = async (goalId, token) => {
+export const getObjects = async (chambreId, token) => {
     try {
         const config = {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
         };
-        const response = await axios.get(`https://greenhomeapi.onrender.com/api/goals/${goalId}/objects/`, config)
+        const response = await axios.get(`https://greenhomeapi.onrender.com/api/objects/${chambreId}`, config)
         return response.data
     } catch (error) {
         console.error("Error fetching objects:", error);
@@ -36,7 +35,7 @@ export const getObjectsByUser = async (userId, token) => {
                 Authorization: `Bearer ${token}`,
             },
         };
-        const response = await axios.get(`https://greenhomeapi.onrender.com/api/goals/${userId}/objects/`, config)
+        const response = await axios.get(`https://greenhomeapi.onrender.com/api/${userId}/objects/`, config)
         return response.data
     } catch (error) {
         console.error("Error fetching objects:", error);
@@ -52,7 +51,7 @@ export const deleteObject = async (object , token) => {
           },
         };
 
-        const response = await axios.delete(`https://greenhomeapi.onrender.com/api/goals/${object.goal}/objects/${object._id}`, config);
+        const response = await axios.delete(`https://greenhomeapi.onrender.com/api/objects/${object._id}`, config);
         return response.data;
 };
 

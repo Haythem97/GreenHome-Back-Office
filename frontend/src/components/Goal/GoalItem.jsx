@@ -35,7 +35,7 @@ function GoalItem({ goal }) {
     };
     return (
         <div className='goal' style={{backgroundImage: `url("${ImageChambre(goal.type)}")`,}}>
-            <Link to={`/goals/${goal._id}`}>
+            <Link to={`/objects/${goal._id}`}>
                 <div className="name">
                 <h2>
                     {goal.name}

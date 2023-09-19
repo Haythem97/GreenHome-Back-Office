@@ -21,7 +21,6 @@ const objectSchema = mongoose.Schema(
         },
         value: {
             type: Boolean, // Vous pouvez définir ici le type qui représente les autorisations (lecture, écriture, etc.)
-            required: true,
         },
     },
   {

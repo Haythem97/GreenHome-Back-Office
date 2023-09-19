@@ -16,7 +16,7 @@ function ObjetImage(type) {
 }
 
 function ObjectItem({ object }) {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     return (
         <div className='object'>
             <img width={"80px"} height={"80px"} src={ObjetImage(object.type)}/>

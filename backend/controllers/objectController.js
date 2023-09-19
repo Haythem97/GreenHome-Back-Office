@@ -36,7 +36,6 @@ device.on('connect', function () {
 // @route   GET /api/objects
 // @access  Private
 const getObjects = asyncHandler(async (req, res) => {
-  console.log(req.params);
   const chambeId = req.params.id; // Obtenez le goalId depuis les paramètres d'URL
   const objects = await Object.find({ goal: chambeId }); // Utilisez goalId pour rechercher les objets associés au but
   res.status(200).json(objects);
@@ -102,7 +101,7 @@ const updateObject = asyncHandler(async (req, res) => {
   }
 
   // Mettez à jour uniquement le champ spécifique avec la nouvelle valeur
-  object.value = req.body.newValue;
+  object.value = req.body.value;
 
   // Enregistrez les modifications de l'objet
   await object.save();
