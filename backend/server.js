@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use('/api/goals', require('./routes/goalRoutes'));
 app.use('/api/users', require('./routes/userRoutes'));
-app.use(`/api/goals/:goalId/objects`, require('./routes/objectRoutes'));
+app.use(`/api/objects`, require('./routes/objectRoutes'));
 app.use(`/api/:userId/objects`, require('./routes/objectsbyuserRoutes'));
 
 // Serve frontend
