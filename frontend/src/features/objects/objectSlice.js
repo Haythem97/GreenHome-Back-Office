@@ -13,10 +13,11 @@ const initialState = {
 // Create new object
 export const createObject = createAsyncThunk(
     'objects/create',
-    async ({ goalId, objectData }, thunkAPI) => {
+    async ({objectData }, thunkAPI) => {
         try {
+            console.log(objectData)
             const token = thunkAPI.getState().auth.user.token
-            return await objectService.createObject(goalId,objectData,token)
+            return await objectService.createObject(objectData,token)
         } catch (error) {
             const message =
                 (error.response &&
@@ -53,6 +54,7 @@ export const deleteObject = createAsyncThunk(
     'objects/delete',
     async (object, thunkAPI) => {
         try {
+            console.log(object);
             const token = thunkAPI.getState().auth.user.token
             return await objectService.deleteObject(object, token)
         } catch (error) {

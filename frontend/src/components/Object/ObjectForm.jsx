@@ -12,13 +12,12 @@ function ObjectForm({numberOfLampes}) {
     const [type, setType] = useState('');
     const [port, setPort] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const { goalId } = useParams(); // Obtenez l'ID depuis les paramètres d'URL
-
+    const { chambreId } = useParams(); // Obtenez l'ID depuis les paramètres d'URL
     const dispatch = useDispatch()
 
     const onSubmit = (e) => {
         e.preventDefault()
-        dispatch(createObject({ goalId: goalId, objectData: { goalId: goalId, name: text, port: port, type: type } }));
+        dispatch(createObject({objectData: { goalId: chambreId, name: text, port: port, type: type } }));
         setText('');
     }
 

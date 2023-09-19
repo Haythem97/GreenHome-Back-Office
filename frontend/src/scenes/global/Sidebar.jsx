@@ -150,7 +150,7 @@ const Sidebar = () => {
                                         {goals.map((goal) => (
                                             <Item
                                                 title={goal.name}
-                                                to={`/goals/${goal._id}`}
+                                                to={`/objects/${goal._id}`}
                                                 icon={getGoalIcon(goal.type)} // Utilisez la fonction getGoalIcon ici
                                                 selected={selected}
                                                 setSelected={setSelected}

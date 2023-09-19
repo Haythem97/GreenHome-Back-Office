@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Create new Object
-const createObject = async (goalId, objectData, token) => {
+const createObject = async (objectData, token) => {
     const config = {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -45,6 +45,7 @@ export const getObjectsByUser = async (userId, token) => {
 
 // Delete user Object
 export const deleteObject = async (object , token) => {
+        console.log(object._id);
         const config = {
           headers: {
             Authorization: `Bearer ${token}`,

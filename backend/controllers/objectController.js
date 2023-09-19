@@ -67,7 +67,7 @@ const setObject = asyncHandler(async (req, res) => {
   const object = await Object.create({
     name: req.body.name,
     type: req.body.type,
-    goal: req.body.goalId,
+    goal: req.body.chambreId,
     port: req.body.port,
     value: false,
   });
@@ -107,21 +107,12 @@ const updateObject = asyncHandler(async (req, res) => {
 // @access  Private
 const deleteObject = asyncHandler(async (req, res) => {
   const object = await Object.findById(req.params.id)
-  const goal = await Goal.findById(req.params.goalId)
-
   if (!object) {
     res.status(400)
     throw new Error('object not found')
   }
-
-  // Check for goal
-  if (!goal) {
-    res.status(401)
-    throw new Error('goal not found')
-  }
-
   // Make sure the logged in user matches the goal user
-  if (object.goal.toString() !== req.params.goalId) {
+  if (object._id.toString() !== req.params.id) {
     res.status(401)
     throw new Error('User not authorized')
   }
