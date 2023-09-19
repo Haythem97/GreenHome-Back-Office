@@ -124,6 +124,26 @@ const getMe = asyncHandler(async (req, res) => {
   res.status(200).json(req.user)
 })
 
+// @desc    Get other users with the same primary_email
+// @route   GET /api/users/other-users
+// @access  Private (seul l'administrateur peut accéder à cette route)
+const getOtherUsersPermissions = asyncHandler(async (req, res) => {
+  const currentUser = req.user;
+  console.log(currentUser);
+  try {
+    // Recherchez tous les utilisateurs avec le même primary_email, mais excluez l'utilisateur actuel
+    const otherUsersPermissions = await User.find({
+      primary_email: currentUser.primary_email,
+      _id: { $ne: currentUser._id }, // Exclure l'utilisateur actuel
+    });
+    console.log(otherUsersPermissions);
+    // Retournez la liste des autres utilisateurs
+    res.status(200).json(otherUsersPermissions);
+  } catch (error) {
+    res.status(500).json({ message: 'Server Error' });
+  }
+});
+
 // Generate JWT
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -136,4 +156,5 @@ module.exports = {
   loginUser,
   updateUserProfile,
   getMe,
+  getOtherUsersPermissions,
 }
