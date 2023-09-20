@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
 import { FaSignInAlt } from 'react-icons/fa'
 import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate,Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { login, reset } from '../features/auth/authSlice'
 import Spinner from '../components/Spinner'
+import './Login.css'; // Assurez-vous que le chemin correspond à l'emplacement de votre fichier CSS
+
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -94,6 +96,9 @@ function Login() {
             </button>
           </div>
         </form>
+        <div className='register-link'>
+          <p>Don't have an account? <Link to='/Register'>Register</Link></p>
+        </div>
       </section>
     </>
   )

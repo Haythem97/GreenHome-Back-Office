@@ -8,10 +8,12 @@ import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
+import { useNavigate } from 'react-router-dom';
 
 const Topbar = () => {
     const theme = useTheme();
     const colorMode = useContext(ColorModeContext);
+    const navigate = useNavigate();
 
     // État local pour le chemin du logo en fonction de colors
     const [logo, setLogo] = useState(theme.palette.mode === 'dark' ? GreenHomeLogoWhite : GreenHomeLogoDark);
@@ -46,8 +48,7 @@ const Topbar = () => {
                         <SettingsOutlinedIcon />
                     </IconButton>
                     <IconButton>
-                        <PersonOutlinedIcon />
-                    </IconButton>
+                    <PersonOutlinedIcon onClick={()=> {navigate('/profile')}} />                    </IconButton>
                 </div>
             </Box>
         </Box>

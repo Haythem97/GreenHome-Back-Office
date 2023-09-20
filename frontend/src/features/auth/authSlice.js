@@ -42,7 +42,25 @@ export const login = createAsyncThunk('auth/login', async (user, thunkAPI) => {
     return thunkAPI.rejectWithValue(message)
   }
 })
+export const update = createAsyncThunk(
+  "/update",
+  async ({userData}, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.user.token;
 
+      // return await goalService.createGoal(goalData, token)
+      return await authService.updateUser(userData, token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
 export const logout = createAsyncThunk('auth/logout', async () => {
   await authService.logout()
 })

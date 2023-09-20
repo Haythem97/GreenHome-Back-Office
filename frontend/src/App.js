@@ -10,6 +10,7 @@ import Sidebar from "./scenes/global/Sidebar";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
 import Topbar from "./scenes/global/Topbar";
+import Profile from './pages/Profile';
 
 function App() {
     const [isSidebar, setIsSidebar] = useState(true);
@@ -29,6 +30,7 @@ function App() {
                               <Route path='/' element={<Dashboard />} />
                               <Route path='/login' element={<Login />} />
                               <Route path='/register' element={<Register />} />
+                              <Route path='/profile' element={<Profile />} />
                               <Route path="/objects/:chambreId" element={<Objets />} />
                           </Routes>
                       </main>
