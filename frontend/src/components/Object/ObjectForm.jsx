@@ -17,7 +17,7 @@ function ObjectForm({numberOfLampes}) {
 
     const onSubmit = (e) => {
         e.preventDefault()
-        dispatch(createObject({objectData: { goalId: chambreId, name: text, port: port, type: type } }));
+        dispatch(createObject({objectData: { chambreId: chambreId, name: text, port: port, type: type } }));
         setText('');
     }
 
@@ -34,7 +34,7 @@ function ObjectForm({numberOfLampes}) {
     };
 
     return (
-        <section className='form'>
+        <section className='form2'>
                 <div className='form-group'>
                     <button className='btn btn-block' type='button' onClick={openModal}>Ajouter un nouveau objet</button>
                 </div>

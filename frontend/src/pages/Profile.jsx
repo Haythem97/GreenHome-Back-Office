@@ -1,10 +1,7 @@
-import { FaSignInAlt } from "react-icons/fa";
-import { login } from "../features/auth/authSlice";
-import { update, reset } from "../features/auth/authSlice";
-import React, { useEffect, useState } from "react";
+import { update } from "../features/auth/authSlice";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { AiFillCamera } from "react-icons/ai";
 import styles from "./Profile.module.scss";
 function Profile() {
   const { user } = useSelector((state) => state.auth);
@@ -31,9 +28,8 @@ function Profile() {
     if (isReadonly) {
       setIsReadonly(!isReadonly);
     } else {
-      // e.preventDefault();
-       const token = localStorage.getItem("token");
-
+      const token = localStorage.getItem("token");
+      if (token){
       dispatch(update(userData))
         .then((data) => {
           console.log(data);
@@ -42,10 +38,9 @@ function Profile() {
         })
         .catch((err) => console.log(err));
       setIsReadonly(!isReadonly);
-    }
+    }}
   };
 
-  console.log("user", user);
   return (
     <>
       <div className="container">

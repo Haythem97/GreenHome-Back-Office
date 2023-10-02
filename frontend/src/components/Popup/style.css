@@ -20,6 +20,9 @@
     width: 35%;
     color: #1d1d1d;
     text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    font-weight: bold;
 }
 
 .close-button {

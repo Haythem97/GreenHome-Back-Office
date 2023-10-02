@@ -19,7 +19,7 @@ function ObjectItem({ object }) {
     const dispatch = useDispatch();
     return (
         <div className='object'>
-            <img width={"80px"} height={"80px"} src={ObjetImage(object.type)}/>
+            <img width={"80px"} height={"80px"} src={ObjetImage(object.type)} alt=""/>
             <div>TYPE : {object.type}</div>
             <div>PORT : {object.port}</div>
             <button onClick={() => dispatch(deleteObject(object))} className='close'>

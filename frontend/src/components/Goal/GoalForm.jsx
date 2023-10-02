@@ -27,7 +27,7 @@ function GoalForm() {
   };
 
   return (
-      <section className='form'>
+      <section className='form2'>
         <div className='form-group'>
           <button className='btn btn-block' type='button' onClick={openModal}>Ajouter une nouvelle chambre</button>
         </div>

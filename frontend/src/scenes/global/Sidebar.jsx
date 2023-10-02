@@ -4,6 +4,8 @@ import {Box, IconButton, Typography, useTheme} from "@mui/material";
 import {Link, useNavigate} from "react-router-dom";
 import {tokens} from "../../theme";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
+import Login from "@mui/icons-material/Login";
 import HotelIcon from '@mui/icons-material/Hotel';
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import RestaurantIcon from '@mui/icons-material/Restaurant';
@@ -107,7 +109,7 @@ const Sidebar = () => {
                                 icon={isCollapsed ? <MenuOutlinedIcon/> : undefined}
                                 style={{
                                     margin: "10px 0 20px 0",
-                                    color: colors.grey[100],
+                                    color: 'white',
                                 }}
                             >
                                 {!isCollapsed && (
@@ -186,6 +188,73 @@ const Sidebar = () => {
                 </Box>
             ) : (
                 <>
+                    <Box
+                        sx={{
+                            "& .pro-sidebar-inner": {
+                                background: `${colors.primary[400]} !important`,
+                            },
+                            "& .pro-icon-wrapper": {
+                                backgroundColor: "transparent !important",
+                            },
+                            "& .pro-inner-item": {
+                                padding: "5px 35px 5px 20px !important",
+                            },
+                            "& .pro-inner-item:hover": {
+                                color: "#868dfb !important",
+                            },
+                            "& .pro-menu-item.active": {
+                                color: "#6870fa !important",
+                            },
+                        }}
+                    >
+                        <ProSidebar collapsed={isCollapsed}>
+                            <Menu iconShape="square">
+                                {/* LOGO AND MENU ICON */}
+                                <MenuItem
+                                    onClick={() => setIsCollapsed(!isCollapsed)}
+                                    icon={isCollapsed ? <MenuOutlinedIcon/> : undefined}
+                                    style={{
+                                        margin: "10px 0 20px 0",
+                                        color: 'white',
+                                    }}
+                                >
+                                    {!isCollapsed && (
+                                        <Box
+                                            display="flex"
+                                            justifyContent="space-between"
+                                            alignItems="center"
+                                            ml="15px"
+                                        >
+                                            <Typography variant="h3" color={colors.grey[100]}>
+                                                MENU
+                                            </Typography>
+                                            <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
+                                                <MenuOutlinedIcon/>
+                                            </IconButton>
+                                        </Box>
+                                    )}
+                                </MenuItem>
+
+
+                                <Box paddingLeft={isCollapsed ? undefined : "5%"}>
+                                    <Item
+                                        title="Login"
+                                        to="/Login"
+                                        icon={<Login/>}
+                                        selected={selected}
+                                        setSelected={setSelected}
+                                    />
+                                    <Item
+                                        title="Register"
+                                        to="/Register"
+                                        icon={<PersonAddAltIcon/>}
+                                        selected={selected}
+                                        setSelected={setSelected}
+                                    />
+                                </Box>
+                            </Menu>
+                        </ProSidebar>
+                    </Box>
                 </>
             )}
         </header>

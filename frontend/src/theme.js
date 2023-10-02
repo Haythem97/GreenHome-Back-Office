@@ -1,6 +1,5 @@
 import { createContext, useState, useMemo } from "react";
 import { createTheme } from "@mui/material/styles";
-import GreenHomeLogo from "./public/GreenHomeLogoDark.png"
 // color design tokens export
 export const tokens = (mode) => ({
   ...(mode === "dark"
@@ -79,7 +78,7 @@ export const tokens = (mode) => ({
           300: "#0c101b",
           400: "#8EE4AF", // manually changed
           500: "#141b2d",
-          600: "#1F2A40",
+          600: "rgb(201 237 203)",
           700: "#727681",
           800: "#a1a4ab",
           900: "#d0d1d5",

@@ -7,7 +7,7 @@ const createObject = async (objectData, token) => {
             Authorization: `Bearer ${token}`,
           },
         };
-        const response = await axios.post(`http://greenhomeapi.onrender.com/api/objects/`, objectData, config);
+        const response = await axios.post(`https://greenhomeapi.onrender.com/api/objects/`, objectData, config);
         return response.data;
     };
 

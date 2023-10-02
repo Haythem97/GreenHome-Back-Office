@@ -1,14 +1,20 @@
 import { useState, useEffect } from 'react'
 import { FaSignInAlt } from 'react-icons/fa'
 import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate,Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { login, reset } from '../features/auth/authSlice'
 import Spinner from '../components/Spinner'
-import './Login.css'; // Assurez-vous que le chemin correspond à l'emplacement de votre fichier CSS
+import './Login.css';
+import {tokens} from "../theme";
+import {useTheme} from "@mui/material"; // Assurez-vous que le chemin correspond à l'emplacement de votre fichier CSS
+
 
 
 function Login() {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+  console.log(colors);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -62,11 +68,11 @@ function Login() {
         <h1>
           <FaSignInAlt /> Login
         </h1>
-        <p>Login and start setting goals</p>
+        <p>Login and start setting Rooms</p>
       </section>
 
-      <section className='form'>
-        <form onSubmit={onSubmit}>
+      <section  className='form'>
+        <form style={{backgroundColor:colors.primary[600]}} onSubmit={onSubmit}>
           <div className='form-group'>
             <input
               type='email'
@@ -96,9 +102,6 @@ function Login() {
             </button>
           </div>
         </form>
-        <div className='register-link'>
-          <p>Don't have an account? <Link to='/Register'>Register</Link></p>
-        </div>
       </section>
     </>
   )

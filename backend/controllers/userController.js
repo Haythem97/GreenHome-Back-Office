@@ -65,7 +65,6 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 });
 
-
 // @desc    Authenticate a user
 // @route   POST /api/users/login
 // @access  Public
@@ -95,7 +94,7 @@ const loginUser = asyncHandler(async (req, res) => {
 // @access  Private
 const updateUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
-
+  console.log(req.user);
   if (user) {
     user.name = req.body.name || user.name;
 
@@ -111,6 +110,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
       email: updatedUser.email,
       primary_email: updatedUser.primary_email,
       token: generateToken(updatedUser._id),
+      permissions:user.permissions,
     });
   } else {
     res.status(404);

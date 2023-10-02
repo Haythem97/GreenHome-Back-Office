@@ -5,8 +5,12 @@ import { toast } from 'react-toastify'
 import { FaUser } from 'react-icons/fa'
 import { register, reset } from '../features/auth/authSlice'
 import Spinner from '../components/Spinner'
+import {useTheme} from "@mui/material";
+import {tokens} from "../theme";
 
 function Register() {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -79,7 +83,7 @@ function Register() {
       </section>
 
       <section className='form'>
-        <form onSubmit={onSubmit}>
+        <form style={{backgroundColor:colors.primary[600]}} onSubmit={onSubmit}>
           <div className='form-group'>
             <input
               type='text'

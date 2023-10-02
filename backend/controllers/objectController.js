@@ -3,35 +3,6 @@ const asyncHandler = require('express-async-handler')
 const Goal = require('../models/goalModel')
 const Object = require('../models/objectModel')
 
-// Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
-// SPDX-License-Identifier: MIT-0
-var awsIot = require('aws-iot-device-sdk');
-
-//
-// Replace the values of '<YourUniqueClientIdentifier>' and '<YourCustomEndpoint>'
-// with a unique client identifier and custom host endpoint provided in AWS IoT.
-// NOTE: client identifiers must be unique within your AWS account; if a client attempts
-// to connect with a client identifier which is already in use, the existing
-// connection will be terminated.
-//
-var device = awsIot.device({
-  keyPath: 'private.pem.key',
-  certPath: 'certificate.pem.crt',
-  caPath: 'root-CA.pem',
-  clientId: 'testconnection',
-  host: 'agkj70tot2l60-ats.iot.eu-north-1.amazonaws.com'
-});
-
-//
-// Device is an instance returned by mqtt.Client(), see mqtt.js for full
-// documentation.
-//
-
-
-device.on('connect', function () {
-  device.subscribe('mqtt/receive');
-});
-
 // @desc    Get objects
 // @route   GET /api/objects
 // @access  Private
@@ -73,12 +44,6 @@ const setObject = asyncHandler(async (req, res) => {
   });
   res.status(200).json(object);
 
-
-  device.publish('aws/kk', JSON.stringify({ test_data: object }));
-
-  device.on('message', function (topic, payload) {
-    console.log('message', topic, payload.toString());
-  });
 });
 
 // @desc    Update value object
