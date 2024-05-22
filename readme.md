@@ -1,4 +1,4 @@
-# GreenHome app
+# GreenHome back-office
 
 This is the GreenHome back-office to create users and add their depencies.
 
