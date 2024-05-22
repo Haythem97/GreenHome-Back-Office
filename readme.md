@@ -1,6 +1,6 @@
 # GreenHome app
 
-This is the GreenHome app to create users and add their depencies.
+This is the GreenHome back-office to create users and add their depencies.
 
 ## Usage
 
